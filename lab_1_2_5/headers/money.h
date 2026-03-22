@@ -1,112 +1,42 @@
 #pragma once
 
 #include <string>
-#include <stdexcept>
-
-using namespace std;
 
 class Money {
 private:
 	int first; // nominal
 	int second; // count
 public:
-	Money(int first, int second) {
-		this->first = first;
-		this->second = second;
-	}
+	Money(int first, int second);
 
 	// Properties
-	int GetFirst() const {
-		return first;
-	}
+	int GetFirst() const;
 
-	bool SetFirst(int value) {
-		if (value <= 0) {
-			return false;
-		}
+	bool SetFirst(int value	);
 
-		first = value;
+	int GetSecond() const;
 
-		return true;
-	}
+	bool SetSecond(int value);
 
-
-	int GetSecond() const {
-		return second;
-	}
-
-	bool SetSecond(int value) {
-		if (value <= 0) {
-			return false;
-		}
-
-		second = value;
-
-		return true;
-	}
-
-	int GetAmount() const {
-		return first * second;
-	}
+	int GetTotalAmount() const;
 
 	// Methods
-	string Statistic() const {
-		return first + " x " + second;
-	}
+	std::string Statistic() const;
 
-	bool EnoughFor(int amount) const {
-		return first * second >= amount;
-	}
+	bool EnoughFor(int amount) const;
 
-	int EnoughForCount(int price) const {
-		auto has_amount = first * second;
-
-		return (has_amount - (has_amount % price)) / price;
-	}
+	int EnoughForCount(int price) const;
 
 	// Operators
-	const int& operator[](int index) const {
-		switch (index) {
-		case 1:
-			return first;
-		case 2:
-			return second;
-		default:
-			throw out_of_range("Unknown index");
-		}
-	}
+	const int& operator[](int index) const;
 
-	Money& operator++() {
-		++first;
-		++second;
+	Money& operator++();
 
-		return *this;
-	}
+	Money& operator--();
 
-	Money& operator--() {
-		if (1 > first || 1 > second) {
-			throw invalid_argument("Nominal or count can not be less than 0 or equal 0!");
-		}
+	bool operator!() const;
 
-		--first;
-		--second;
+	Money operator+(int value);
 
-		return *this;
-	}
-
-	bool operator!() const {
-		return second > 0;
-	}
-
-	Money operator+(int value) {
-		return Money(first, second + value);
-	}
-
-	Money operator-(int value) {
-		if (value > second) {
-			throw invalid_argument("Count can not be less than 0!");
-		}
-
-		return Money(first, second - value);
-	}
+	Money operator-(int value);
 };

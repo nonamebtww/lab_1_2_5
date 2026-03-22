@@ -16,15 +16,21 @@
     <Filter Include="Header Files\models">
       <UniqueIdentifier>{b5f8b3f5-de11-4222-a301-05ea0dbed07a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\models">
+      <UniqueIdentifier>{7ed469bb-ebda-4fc7-8f73-8bb7c0c9f81b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\money.h">
+    <ClInclude Include="headers\Money.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Money.cpp">
+      <Filter>Source Files\models</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
